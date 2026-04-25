@@ -17,13 +17,15 @@ services:
       - db
     image: wordpress:latest
     restart: always
-    ports:
-      - "8080:80"
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpresspassword
       WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_CONFIG_EXTRA: |
+        define('FORCE_SSL_ADMIN', true);
+        if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)
+            $_SERVER['HTTPS']='on';
     volumes:
       - ./data/wordpress:/var/www/html
     labels:
