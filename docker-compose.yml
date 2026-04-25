@@ -24,8 +24,8 @@ services:
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_CONFIG_EXTRA: |
         define('FORCE_SSL_ADMIN', true);
-        if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)
-            $_SERVER['HTTPS']='on';
+        if (strpos($$_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)
+            $$_SERVER['HTTPS']='on';
     volumes:
       - ./data/wordpress:/var/www/html
     labels:
